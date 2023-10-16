@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+      {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welcome to BCK CLOTHING COMPANY where you can buys different items.....
+    {% endif %}
+{% endblock %}
+{% block title %}
+{% if category %}
+      {{ category.name }} -- BCK CLOTHING COMPANY
+    {% else %}
+        See our New Collections -- BCK CLOTHING COMPANY
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if category %}
+
+   <div>
+       <div class="row my-row-class">
+           <div class="mix-auto">
+           <p> <a href="{% url 'shop:allProdCat' %}" >  Our Product collections </a>   </p>
+       </div>
+           </div>
+   </div>
+
+    {% endif %}
+<div>
+    {% if category %}
+    <img src="{{category.img.url}}" alt="{{category.name}}">
+</div>
+    <br>
+<div>
+    <h1> {{category.name}}</h1>
+    <p>{{category.description}}</p>
+</div>
+  {% else %}
+<div>
+<img src="{% static 'img/banner.png' %}" alt="our products" width="1260px;">
+    </div>
+<br>
+<div>
+    <h1>Our Products Collections</h1>
+    <p>THE BCK CLOTHING COMPANY  caters to thoughtful shoppers who appreciate unique designs and top quality pieces you just can’t find anywhere else. We are constantly curating fresh new collections and looking for the next big thing our customers will love. Founded in Vienna in 2019, we are proud to be your Online Clothing Shop that you can rely on for our expert service and care. </p>
+</div>
+  {% endif %}
+<div>
+    <div>
+        {% for product in products %}
+        <div>
+            <div>
+                <a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="{{product.name}}"> </a>
+                <div>
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
