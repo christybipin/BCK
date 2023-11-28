@@ -22,7 +22,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'shop:allProdCat' %}">All Products</a></li>
                {% for cat in links %}
-            <li><a class="dropdown-item" href="{{cat.get_url}}">{{cat.name}}</a></li>
+            <li><a class="dropdown-item" href="{{cat.get_url}}">{{cat.name}}</a>
                {% endfor %}
 
           </ul>
@@ -36,7 +36,7 @@
       <form class="d-flex" action="{% url 'search_app:SearchResult' %}" method="get">
         {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i><i class="fa fa-search"></i></button>
+        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i><i class=" fa-search"></i></button>
       </form>
 
 

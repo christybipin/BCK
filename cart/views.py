@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from shop.models import product
+from shop.models import Product
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -14,7 +14,7 @@ def _cart_id(request):
 
 
 def add_cart(request, product_id):
-    products = product.objects.get(id=product_id)
+    products = Product.objects.get(id=product_id)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.ObjectDoesNotExist:

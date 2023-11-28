@@ -1,8 +1,8 @@
-import product as product
+
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from .models import Category,product
+from .models import Category,Product
 
 
 # Create your views here.
@@ -10,19 +10,19 @@ from .models import Category,product
 
 def allProdCat(request, c_slug=None):
     c_page = None
-    products = None
+
     if c_slug != None:
         c_page = get_object_or_404(Category, slug=c_slug)
-        products = product.objects.all().filter(category=c_page, available=True)
+        products = Product.objects.all().filter(category=c_page, available=True)
     else:
-        products = product.objects.all().filter(available=True)
+        products = Product.objects.all().filter(available=True)
     return render(request, "category.html", { 'category': c_page, 'products': products })
 
 
 def prodDetail(request, c_slug, product_slug):
 
     try:
-        product = product.objects.get(category__slug=c_slug, slug=product_slug)
+        products = Product.objects.get(category__slug=c_slug, slug=product_slug)
     except Exception as e:
         raise e
-    return render(request, 'product.html', { 'product': product })
+    return render(request, 'product.html', { 'products': products })
