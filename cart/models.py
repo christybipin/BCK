@@ -12,7 +12,7 @@ class Cart(models.Model):
         ordering = ['date_added']
 
     def __str__(self):
-        return self.cart_id
+        return '{}'.format(self.cart_id)
 
 
 class CartItem(models.Model):
@@ -26,5 +26,6 @@ class CartItem(models.Model):
 
     def sub_total(self):
         return self.product.price * self.quantity
+
     def __str__(self):
-        return self.product
+        return '{}'.format(self.product)
